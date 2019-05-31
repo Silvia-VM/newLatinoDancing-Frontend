@@ -1,19 +1,46 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
+import { MapView } from "expo";
+import Geocoder from "react-native-geocoding";
 
 class ListSoirees extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      tabBarLabel: "Map"
+    };
+  };
   state = {
     events: null
   };
+
   render() {
     if (this.state.events === null) {
       return <Text> Loading</Text>;
     }
-
+    Geocoder.init("http://localhost:3000/");
     return (
-      <View style={styles.container}>
-        <FlatList
+      <MapView
+        style={{ flex: 1 }}
+        initialRegion={{
+          latitude: 48.856614,
+          longitude: 2.3522219,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.04
+        }}
+      >
+        <MapView.Marker
+          coordinate={{
+            latitude: 48.856614,
+            longitude: 2.3522219
+          }}
+          title={"Le Reacteur"}
+          description={"La formation des champion·ne·s !"}
+        />
+      </MapView>
+    );
+
+    /* <FlatList
           ItemSeparatorComponent={() => {
             return <View style={{ backgroundColor: "red", height: 1 }} />;
           }}
@@ -25,12 +52,11 @@ class ListSoirees extends React.Component {
               <Text>{item.description}</Text>
             </View>
           )}
-        />
-      </View>
-    );
+        /> */
   }
+
   async componentDidMount() {
-    const response = await axios.get("http://localhost:3000/");
+    const response = await axios.get("http://localhost:3000/events");
     this.setState({
       events: response.data,
       isLoading: false
@@ -45,4 +71,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   }
 });
+
 export default ListSoirees;

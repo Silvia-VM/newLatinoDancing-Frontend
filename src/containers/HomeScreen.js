@@ -33,6 +33,26 @@ class HomeScreen extends React.Component {
             <Text style={[styles.countText]}> SOIRÉES </Text>
           </TouchableHighlight>
         </View>
+        <View>
+          <TouchableHighlight
+            underlayColor={"#CFAF90"}
+            style={styles.button}
+            onPress={this.showMoreFestival}
+          >
+            <Text style={[styles.countText]}> FESTIVALS </Text>
+          </TouchableHighlight>
+        </View>
+        <View>
+          <TouchableHighlight
+            underlayColor={"#7C5D98"}
+            style={styles.button}
+            onPress={this.showMoreCours}
+          >
+            <Text style={[styles.countText]}> COURS </Text>
+          </TouchableHighlight>
+        </View>
+        <Button title="Sign in" onPress={() => this.signInAsync()} />
+        <Button title="Sign up" onPress={() => this.signUpAsync()} />
       </View>
     );
   }
@@ -40,6 +60,19 @@ class HomeScreen extends React.Component {
   showMoreApp = () => {
     this.props.navigation.navigate("Lists");
   };
+  showMoreFestival = () => {
+    this.props.navigation.navigate("Festival");
+  };
+  showMoreCours = () => {
+    this.props.navigation.navigate("Cours");
+  };
+  signInAsync = () => {
+    this.props.navigation.navigate("SignIn");
+  };
+
+  //   signUpAsync = () => {
+  //     this.props.navigation.navigate("AuthUp");
+  //   };
 }
 const styles = StyleSheet.create({
   container: {
@@ -48,8 +81,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35
   },
   button: {
+    shadowOffset: { width: 1.5, height: 1.5 },
+    shadowColor: "black",
+    shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    backgroundColor: "white",
     padding: 22
   },
   countText: {
