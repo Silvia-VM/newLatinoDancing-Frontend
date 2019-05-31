@@ -24,7 +24,7 @@ class ListCours extends React.Component {
             return <View style={[styles.box]} />;
           }}
           data={this.state.cours}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={item => String(item._id)}
           renderItem={({ item }) => (
             <View style={styles.container}>
               <View style={[styles.box]}>
