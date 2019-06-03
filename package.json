@@ -7,10 +7,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/plugin-transform-react-jsx-source": "^7.2.0",
     "axios": "^0.18.0",
+    "babel-plugin-react-relay": "^0.10.0",
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-dotenv": "^0.2.0",
     "react-native-geocoding": "^0.3.0",
     "react-navigation": "^3.11.0"
   },

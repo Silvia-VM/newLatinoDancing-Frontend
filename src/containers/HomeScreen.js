@@ -5,26 +5,27 @@ import {
   Text,
   TouchableHighlight,
   StyleSheet,
-  Image,
-  underlayColor
+  Image
 } from "react-native";
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    // return {
-    //   tabBarLabel: "Accueil"
-    // };
+    return {
+      tabBarLabel: "Accueil"
+    };
   };
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <Text style={{ fontWeight: "bold", fontSize: 28 }}>Categories</Text> */}
-        <Image
-          style={styles.image}
-          source={require("../../assets/image/logo.jpg")}
-        />
-        <View>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            style={styles.image}
+            source={require("../../assets/image/logo.jpg")}
+          />
+        </View>
+
+        <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
             underlayColor={"#DE7599"}
             style={styles.button}
@@ -33,26 +34,36 @@ class HomeScreen extends React.Component {
             <Text style={[styles.countText]}> SOIRÉES </Text>
           </TouchableHighlight>
         </View>
-        <View>
+        <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#CFAF90"}
+            underlayColor={"#DE7599"}
             style={styles.button}
             onPress={this.showMoreFestival}
           >
             <Text style={[styles.countText]}> FESTIVALS </Text>
           </TouchableHighlight>
         </View>
-        <View>
+        <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#7C5D98"}
+            underlayColor={"#DE7599"}
             style={styles.button}
             onPress={this.showMoreCours}
           >
             <Text style={[styles.countText]}> COURS </Text>
           </TouchableHighlight>
         </View>
-        <Button title="Sign in" onPress={() => this.signInAsync()} />
-        <Button title="Sign up" onPress={() => this.signUpAsync()} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 10,
+            paddingHorizontal: 45,
+            textcolor: "red"
+          }}
+        >
+          <Button title="Sign in" onPress={() => this.signInAsync()} />
+          <Button title="Sign up" onPress={() => this.signUpAsync()} />
+        </View>
       </View>
     );
   }
@@ -78,23 +89,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 35
+    backgroundColor: "#E8E8E8"
   },
+
   button: {
     shadowOffset: { width: 1.5, height: 1.5 },
     shadowColor: "black",
     shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "white",
-    padding: 22
+    backgroundColor: "#C58595",
+    padding: 23,
+    marginTop: 13
   },
   countText: {
     fontSize: 25,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#E8E8E8"
   },
   image: {
-    width: 305,
-    height: 300
+    width: 355,
+    height: 350
   }
 });
 
