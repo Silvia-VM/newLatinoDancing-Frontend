@@ -24,7 +24,7 @@ class ListFestival extends React.Component {
             return <View style={{ backgroundColor: "red", height: 1 }} />;
           }}
           data={this.state.festivals}
-          keyExtractor={item => String(item.id)}
+          keyExtractor={item => String(item._id)}
           renderItem={({ item }) => (
             <View>
               <Text style={{ color: "black", fontSize: 20 }}>{item.title}</Text>
