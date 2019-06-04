@@ -1,7 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Link
+} from "react-native";
 import axios from "axios";
 import { MapView } from "expo";
+import { marker } from "react-native-maps";
 
 class ListSoirees extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -30,17 +38,53 @@ class ListSoirees extends React.Component {
           }}
         >
           {this.state.events.map((item, index) => {
-            let coord = {};
             return (
-              <MapView.Marker
-                key={index}
-                coordinate={{
-                  latitude: Number(item.latitude),
-                  longitude: Number(item.longitude)
-                }}
-                title={item.title}
-                description={item.description}
-              />
+              <View key={index}>
+                <MapView.Marker
+                  coordinate={{
+                    latitude: Number(item.latitude),
+                    longitude: Number(item.longitude)
+                  }}
+                  // title={item.title}
+                  // description={item.date}
+                >
+                  <MapView.Callout
+                    onPress={() => {
+                      this.showMoreDesc(item._id);
+                    }}
+                  >
+                    <View>
+                      <Text>{item.title}</Text>
+                      <Text>{item.date}</Text>
+                    </View>
+
+                    <TouchableOpacity>
+                      <Text style={{ padding: 10, backgroundColor: "white" }}>
+                        Y ALLER!
+                      </Text>
+                    </TouchableOpacity>
+                  </MapView.Callout>
+                </MapView.Marker>
+                {/*                 
+                <MapView.Marker
+                  coordinate={{
+                    latitude: Number(item.latitude),
+                    longitude: Number(item.longitude)
+                  }}
+                  // title={item.title}
+                  title={item.title}
+                  description={item.date}
+                  // onCalloutPress={"Click"}
+                />
+                <MapView.Callout onPress={() => console.log("This is logged")}>
+                  <Link
+                    to="/random/route"
+                    onPress={() => console.log("This is not fired")}
+                  >
+                    <Text>Click Me!</Text>
+                  </Link>
+                </MapView.Callout> */}
+              </View>
             );
           })}
         </MapView>
@@ -71,7 +115,9 @@ class ListSoirees extends React.Component {
           )}
         /> */
   }
-
+  showMoreDesc = item => {
+    this.props.navigation.navigate("Description", { id: item });
+  };
   async componentDidMount() {
     const response = await axios.get("http://localhost:3000/events");
     this.setState({

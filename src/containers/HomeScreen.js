@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 
   button: {
     shadowOffset: { width: 1.5, height: 1.5 },
-    shadowColor: "black",
+    shadowColor: "#1A1111",
     shadowOpacity: 0.3,
     alignItems: "center",
     backgroundColor: "#C58595",

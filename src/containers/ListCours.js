@@ -44,10 +44,10 @@ class ListCours extends React.Component {
                         justifyContent: "space-between"
                       }}
                     >
-                      <Text style={{ color: "black", fontSize: 13 }}>
+                      <Text style={{ color: "#1A1111", fontSize: 13 }}>
                         {item.site}
                       </Text>
-                      <Text style={{ color: "black", fontSize: 13 }}>
+                      <Text style={{ color: "#1A1111", fontSize: 13 }}>
                         {item.telephone}
                       </Text>
                     </View>
