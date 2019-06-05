@@ -17,8 +17,13 @@ class ListSoirees extends React.Component {
       tabBarLabel: "Map"
     };
   };
+  //Declaration de mes states
   state = {
-    events: []
+    events: [],
+    bachata: false,
+    kizomba: false,
+    cubaine: false,
+    porto: false
   };
 
   render() {
@@ -26,95 +31,119 @@ class ListSoirees extends React.Component {
       return <Text> Loading</Text>;
     } else {
       return (
-        <MapView
-          style={{ flex: 1 }}
-          events={this.state.events}
-          onEventsChange={this.onEventsChange}
-          initialRegion={{
-            latitude: 48.856614,
-            longitude: 2.3522219,
-            latitudeDelta: 0.11,
-            longitudeDelta: 0.07
-          }}
-        >
-          {this.state.events.map((item, index) => {
-            return (
-              <View key={index}>
-                <MapView.Marker
-                  coordinate={{
-                    latitude: Number(item.latitude),
-                    longitude: Number(item.longitude)
-                  }}
-                  // title={item.title}
-                  // description={item.date}
-                >
-                  <MapView.Callout
-                    onPress={() => {
-                      this.showMoreDesc(item._id);
-                    }}
-                  >
-                    <View>
-                      <Text>{item.title}</Text>
-                      <Text>{item.date}</Text>
-                    </View>
+        <View style={styles.container}>
+          <View style={{ flexDirection: "row" }}>
+            {/* Creation de boutons qui au onPress effectue les fonctions showMore..qui filtre les danses */}
+            <TouchableOpacity style={styles.buttons}>
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                onPress={this.showMoreBachata}
+              >
+                BACHATA
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttons}>
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                onPress={this.showMoreSalsa}
+              >
+                SALSA
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttons}>
+              <Text
+                style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
+                onPress={this.showMoreKizomba}
+              >
+                KIZOMBA
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <MapView
+            style={{ flex: 1 }}
+            events={this.state.events}
+            onEventsChange={this.onEventsChange}
+            initialRegion={{
+              latitude: 48.856614,
+              longitude: 2.3522219,
+              latitudeDelta: 0.11,
+              longitudeDelta: 0.07
+            }}
+          >
+            {/* Fonction filter avec en parametre item qui a une condition if en true si true la methode includes verifie et recupere dans la clef tags la ou les danses et les affiche sinon false item rien  */}
 
-                    <TouchableOpacity>
-                      <Text style={{ padding: 10, backgroundColor: "white" }}>
-                        Y ALLER!
-                      </Text>
-                    </TouchableOpacity>
-                  </MapView.Callout>
-                </MapView.Marker>
-                {/*                 
-                <MapView.Marker
-                  coordinate={{
-                    latitude: Number(item.latitude),
-                    longitude: Number(item.longitude)
-                  }}
-                  // title={item.title}
-                  title={item.title}
-                  description={item.date}
-                  // onCalloutPress={"Click"}
-                />
-                <MapView.Callout onPress={() => console.log("This is logged")}>
-                  <Link
-                    to="/random/route"
-                    onPress={() => console.log("This is not fired")}
-                  >
-                    <Text>Click Me!</Text>
-                  </Link>
-                </MapView.Callout> */}
-              </View>
-            );
-          })}
-        </MapView>
+            {this.state.events
+              .filter(item =>
+                this.state.bachata ? item.tags.includes("Bachata") : item
+              )
+              .filter(item =>
+                this.state.kizomba ? item.tags.includes("Kizomba") : item
+              )
+              .filter(item =>
+                this.state.cubaine
+                  ? item.tags.includes("Cubaine") || item.tags.includes("Porto")
+                  : item
+              )
+              .map((item, index) => {
+                return (
+                  <View key={index}>
+                    <MapView.Marker
+                      coordinate={{
+                        latitude: Number(item.latitude),
+                        longitude: Number(item.longitude)
+                      }}
+                      pinColor="aqua"
+                    >
+                      <MapView.Callout
+                        onPress={() => {
+                          this.showMoreDesc(item._id);
+                        }}
+                      >
+                        <View>
+                          <Text>{item.title}</Text>
+                          <Text>{item.date}</Text>
+                        </View>
+
+                        <TouchableOpacity>
+                          <Text
+                            style={{ padding: 10, backgroundColor: "white" }}
+                          >
+                            Y ALLER!
+                          </Text>
+                        </TouchableOpacity>
+                      </MapView.Callout>
+                    </MapView.Marker>
+                  </View>
+                );
+              })}
+          </MapView>
+        </View>
       );
     }
-
-    // {/* .map pour parcourir tous les events, et ajouter un marker pour chacun d'entre eux */}
-    // {/* <MapView.Marker
-    //   coordinate={{
-    //     latitude: 48.856614,
-    //     longitude: 2.3522219
-    //   }}
-    //   title={"Le Reacteur"}
-    //   description={"La formation des champion·ne·s !"}
-    // /> */}
-
-    /* <FlatList
-          ItemSeparatorComponent={() => {
-            return <View style={{ backgroundColor: "red", height: 1 }} />;
-          }}
-          data={this.state.events}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <View>
-              <Text style={{ color: "black", fontSize: 20 }}>{item.title}</Text>
-              <Text>{item.description}</Text>
-            </View>
-          )}
-        /> */
   }
+  // fonction showMore qui au click execute le filtre et le met a jour
+  showMoreBachata = item => {
+    let filterBachata = this.state.bachata;
+    this.setState({
+      bachata: !filterBachata
+    });
+  };
+  showMoreKizomba = item => {
+    let filterKizomba = this.state.kizomba;
+    this.setState({
+      kizomba: !filterKizomba
+    });
+  };
+  showMoreSalsa = item => {
+    let filterPorto = this.state.porto;
+    this.setState({
+      porto: !filterPorto
+    });
+    let filterCubaine = this.state.cubaine;
+    this.setState({
+      cubaine: !filterCubaine
+    });
+  };
   showMoreDesc = item => {
     this.props.navigation.navigate("Description", { id: item });
   };
@@ -127,10 +156,16 @@ class ListSoirees extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    flex: 1
+  },
+  buttons: {
+    shadowOffset: { width: 1.5, height: 1.5 },
+    shadowColor: "#1A1111",
+    shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#C58595",
+    padding: 15,
+    width: 125
   }
 });
 
