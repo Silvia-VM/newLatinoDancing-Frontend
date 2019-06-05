@@ -27,7 +27,7 @@ class HomeScreen extends React.Component {
 
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#DE7599"}
+            underlayColor={"#16294C"}
             style={styles.button}
             onPress={this.showMoreApp}
           >
@@ -36,7 +36,7 @@ class HomeScreen extends React.Component {
         </View>
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#DE7599"}
+            underlayColor={"#16294C"}
             style={styles.button}
             onPress={this.showMoreFestival}
           >
@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
         </View>
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#DE7599"}
+            underlayColor={"#16294C"}
             style={styles.button}
             onPress={this.showMoreCours}
           >
@@ -97,9 +97,10 @@ const styles = StyleSheet.create({
     shadowColor: "#1A1111",
     shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "#C58595",
+    backgroundColor: "#748399",
     padding: 23,
-    marginTop: 13
+    marginTop: 13,
+    borderRadius: 6
   },
   countText: {
     fontSize: 25,

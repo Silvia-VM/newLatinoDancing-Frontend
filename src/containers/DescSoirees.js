@@ -44,7 +44,9 @@ class DescSoirees extends React.Component {
             <View style={styles.box}>
               <Text>
                 <Ionicons name="ios-calendar" size={30} />{" "}
-                {this.state.events.date}
+                {this.state.events.date !== undefined
+                  ? this.state.events.date.split("T")[0]
+                  : ""}
               </Text>
               <Text>
                 <Ionicons name="md-clock" size={30} />{" "}
