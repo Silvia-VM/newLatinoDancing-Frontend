@@ -4,6 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableHighlight,
   Button,
   Link
 } from "react-native";
@@ -34,7 +35,7 @@ class ListSoirees extends React.Component {
         <View style={styles.container}>
           <View style={{ flexDirection: "row" }}>
             {/* Creation de boutons qui au onPress effectue les fonctions showMore..qui filtre les danses */}
-            <TouchableOpacity style={styles.buttons}>
+            <TouchableOpacity style={styles.buttonsOrange}>
               <Text
                 style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
                 onPress={this.showMoreBachata}
@@ -42,15 +43,18 @@ class ListSoirees extends React.Component {
                 BACHATA
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttons}>
+            <TouchableHighlight
+              style={styles.buttonsRouge}
+              underlayColor={"#FED044"}
+            >
               <Text
                 style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
                 onPress={this.showMoreSalsa}
               >
                 SALSA
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttons}>
+            </TouchableHighlight>
+            <TouchableOpacity style={styles.buttonsVert}>
               <Text
                 style={{ color: "white", fontSize: 16, fontWeight: "bold" }}
                 onPress={this.showMoreKizomba}
@@ -92,7 +96,15 @@ class ListSoirees extends React.Component {
                         latitude: Number(item.latitude),
                         longitude: Number(item.longitude)
                       }}
-                      pinColor="aqua"
+                      pinColor={
+                        this.state.kizomba
+                          ? "#0A9A97"
+                          : this.state.cubaine || this.state.porto
+                          ? "#DB2D43"
+                          : this.state.bachata
+                          ? "#FF8002"
+                          : "black"
+                      }
                     >
                       <MapView.Callout
                         onPress={() => {
@@ -101,7 +113,11 @@ class ListSoirees extends React.Component {
                       >
                         <View>
                           <Text>{item.title}</Text>
-                          <Text>{item.date}</Text>
+                          <Text>
+                            {item.date !== undefined
+                              ? item.date.split("T")[0]
+                              : ""}
+                          </Text>
                         </View>
 
                         <TouchableOpacity>
@@ -158,13 +174,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  buttons: {
+  buttonsRouge: {
     shadowOffset: { width: 1.5, height: 1.5 },
     shadowColor: "#1A1111",
     shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "#C58595",
-    padding: 15,
+    backgroundColor: "#DB2D43",
+    padding: 22,
+    width: 125
+  },
+  buttonsVert: {
+    shadowOffset: { width: 1.5, height: 1.5 },
+    shadowColor: "#1A1111",
+    shadowOpacity: 0.3,
+    alignItems: "center",
+    backgroundColor: "#0A9A97",
+    padding: 22,
+    width: 125
+  },
+  buttonsOrange: {
+    shadowOffset: { width: 1.5, height: 1.5 },
+    shadowColor: "#1A1111",
+    shadowOpacity: 0.3,
+    alignItems: "center",
+    backgroundColor: "#FF8002",
+    padding: 22,
     width: 125
   }
 });
