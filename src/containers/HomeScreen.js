@@ -5,7 +5,8 @@ import {
   Text,
   TouchableHighlight,
   StyleSheet,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 
 class HomeScreen extends React.Component {
@@ -89,9 +90,9 @@ class HomeScreen extends React.Component {
     this.props.navigation.navigate("SignIn");
   };
 
-  //   signUpAsync = () => {
-  //     this.props.navigation.navigate("AuthUp");
-  //   };
+  signUpAsync = () => {
+    this.props.navigation.navigate("AuthUp");
+  };
 }
 const styles = StyleSheet.create({
   container: {

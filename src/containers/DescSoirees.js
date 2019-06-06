@@ -77,7 +77,7 @@ class DescSoirees extends React.Component {
   async componentDidMount() {
     const response = await axios.get("http://localhost:3000/events");
     // Cherche event qui correspond à l'id du marker sur lequel on a cliqué
-    var event = response.data.find(el => {
+    let event = response.data.find(el => {
       return el._id === this.props.navigation.state.params.id;
     });
 
