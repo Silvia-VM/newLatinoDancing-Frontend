@@ -27,7 +27,7 @@ class HomeScreen extends React.Component {
 
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#16294C"}
+            underlayColor={"#9A566A"}
             style={styles.button}
             onPress={this.showMoreApp}
           >
@@ -36,7 +36,7 @@ class HomeScreen extends React.Component {
         </View>
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#16294C"}
+            underlayColor={"#5C50C6"}
             style={styles.button}
             onPress={this.showMoreFestival}
           >
@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
         </View>
         <View style={{ paddingHorizontal: 10 }}>
           <TouchableHighlight
-            underlayColor={"#16294C"}
+            underlayColor={"#FED044"}
             style={styles.button}
             onPress={this.showMoreCours}
           >
@@ -61,8 +61,16 @@ class HomeScreen extends React.Component {
             textcolor: "red"
           }}
         >
-          <Button title="Sign in" onPress={() => this.signInAsync()} />
-          <Button title="Sign up" onPress={() => this.signUpAsync()} />
+          <Button
+            title="Sign in"
+            color="#9A566A"
+            onPress={() => this.signInAsync()}
+          />
+          <Button
+            title="Sign up"
+            color="#9A566A"
+            onPress={() => this.signUpAsync()}
+          />
         </View>
       </View>
     );
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#E8E8E8"
+    backgroundColor: "#FBF9FA"
   },
 
   button: {
@@ -97,7 +105,7 @@ const styles = StyleSheet.create({
     shadowColor: "#1A1111",
     shadowOpacity: 0.3,
     alignItems: "center",
-    backgroundColor: "#748399",
+    backgroundColor: "#FBF9FA",
     padding: 23,
     marginTop: 13,
     borderRadius: 6
@@ -105,7 +113,7 @@ const styles = StyleSheet.create({
   countText: {
     fontSize: 25,
     fontWeight: "bold",
-    color: "#E8E8E8"
+    color: "#1B1B1B"
   },
   image: {
     width: 355,
