@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-react-jsx-source": "^7.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-react-relay": "^0.10.0",
     "expo": "^32.0.0",
     "react": "16.5.0",
